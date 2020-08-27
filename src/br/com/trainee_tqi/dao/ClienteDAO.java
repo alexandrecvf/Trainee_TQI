@@ -13,6 +13,7 @@ public class ClienteDAO {
     String rg;
     String telefone;
     String email;
+    String senha;
     String endereco;
     String cep;
     float renda_mensal;
@@ -21,7 +22,7 @@ public class ClienteDAO {
         this.connection = new ConnectionFactory().getConnection();
     } 
     public void adiciona(Cliente cliente){ 
-        String sql = "INSERT INTO cliente(nome,cpf,rg,telefone,email,endereco,cep,renda_mensal) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO cliente(nome,cpf,rg,telefone,email,senha,endereco,cep,renda_mensal) VALUES(?,?,?,?,?,?,?,?,?)";
         try { 
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
@@ -29,9 +30,10 @@ public class ClienteDAO {
             stmt.setString(3, cliente.getRg());
             stmt.setString(4, cliente.getTelefone());
             stmt.setString(5, cliente.getEmail());
-            stmt.setString(6, cliente.getEndereco());
-            stmt.setString(7, cliente.getCep());
-            stmt.setFloat(8, cliente.getRenda_mensal());
+            stmt.setString(6, cliente.getSenha());
+            stmt.setString(7, cliente.getEndereco());
+            stmt.setString(8, cliente.getCep());
+            stmt.setFloat(9, cliente.getRenda_mensal());
             stmt.execute();
             stmt.close();
         } 

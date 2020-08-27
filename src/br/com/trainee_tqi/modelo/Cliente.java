@@ -12,6 +12,7 @@ public class Cliente {
     String rg;
     String telefone;
     String email;
+    String senha;
     String endereco;
     String cep;
     float renda_mensal;
@@ -69,6 +70,12 @@ public class Cliente {
 	}
 	public void setRenda_mensal(float renda_mensal) {
 		this.renda_mensal = renda_mensal;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
     
     
