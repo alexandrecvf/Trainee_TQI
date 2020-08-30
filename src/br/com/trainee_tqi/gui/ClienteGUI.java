@@ -19,9 +19,10 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ClienteGUI {
+@SuppressWarnings("serial")
+public class ClienteGUI extends JFrame{
 
-	private JFrame frame;
+	private JFrame frmCadastroCliente;
 	private JTextField textField_nome;
 	private JTextField textField_rg;
 	private JTextField textField_email;
@@ -40,7 +41,7 @@ public class ClienteGUI {
 			public void run() {
 				try {
 					ClienteGUI window = new ClienteGUI();
-					window.frame.setVisible(true);
+					window.frmCadastroCliente.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,17 +67,18 @@ public class ClienteGUI {
 		ftmCpf = new MaskFormatter("###.###.###-##");
 		ftmCep = new MaskFormatter("#####-###");
 		
-		frame = new JFrame();
-		frame.setBounds(100, 100, 550, 370);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCadastroCliente = new JFrame();
+		frmCadastroCliente.setTitle("Cadastro Cliente");
+		frmCadastroCliente.setBounds(100, 100, 550, 370);
+		frmCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblCadastroCliente = new JLabel("Cadastro Cliente");
 		lblCadastroCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCadastroCliente.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		frame.getContentPane().add(lblCadastroCliente, BorderLayout.NORTH);
+		frmCadastroCliente.getContentPane().add(lblCadastroCliente, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		frmCadastroCliente.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_1 = new JPanel();
@@ -163,17 +165,19 @@ public class ClienteGUI {
 		panel_1.add(textField_renda);
 		textField_renda.setColumns(10);
 		
+		// Botão salvar, que após verificar os campos, manda para o cliente dao
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				// instanciando a classe Cliente do pacote modelo e criando seu objeto clientes
+				// Instanciando a classe Cliente do pacote modelo e criando seu objeto clientes
 		        Cliente clientes = new Cliente();
 		        clientes.setNome(textField_nome.getText());
 		        clientes.setCpf(formattedTextField_cpf.getText());
 		        clientes.setRg(textField_rg.getText());
 		        clientes.setTelefone(formattedTextField_telefone.getText());
 		        clientes.setEmail(textField_email.getText());
-		        clientes.setSenha(passwordField.getText());
+		        clientes.setSenha((passwordField.getText()).trim()); // O trim tira os espaços no início e final da senha
 		        clientes.setEndereco(textField_endereco.getText());
 		        clientes.setCep(formattedTextField_cep.getText());
 		        clientes.setRenda_mensal(Float.parseFloat(textField_renda.getText()));
@@ -206,16 +210,25 @@ public class ClienteGUI {
 		btnSalvar.setBounds(127, 241, 89, 23);
 		panel_1.add(btnSalvar);
 		
+		// Botão que permite que o usuário feche o sistema
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// Fecha o programa
 				System.exit(0);
 			}
 		});
 		btnSair.setBounds(326, 241, 89, 23);
 		panel_1.add(btnSair);
 		
+		// Botão para voltar para a tela inicial do sistema
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HomeGUI.main(null);
+				frmCadastroCliente.dispose();
+			}
+		});
 		btnVoltar.setBounds(226, 241, 89, 23);
 		panel_1.add(btnVoltar);
 	}
