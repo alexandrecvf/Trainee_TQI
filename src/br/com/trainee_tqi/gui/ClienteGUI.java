@@ -19,22 +19,73 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings("serial")
+/**<h2>Classe ClienteGUI</h2><br>
+ * Classe responsável por gerar a tela de cadastramento de um cliente.
+ * 
+ * @author Alexandre Vilarinho
+ * */
 public class ClienteGUI extends JFrame{
 
+	/** Serial Version */
+	private static final long serialVersionUID = 1L;
+	/** Frame da tela Cadastro Cliente*/
 	private JFrame frmCadastroCliente;
+	/** Campo de texto relativo ao nome do usuário*/
 	private JTextField textField_nome;
+	/** Campo de texto relativo ao RG do usuário*/
 	private JTextField textField_rg;
+	/** Campo de texto relativo ao e-mail do usuário*/
 	private JTextField textField_email;
+	/** Campo de texto relativo ao endereço do usuário*/
 	private JTextField textField_endereco;
+	/** Campo de texto relativo à renda mensal do usuário*/
 	private JTextField textField_renda;
+	/** Campo de texto relativo à senha do usuário*/
 	private JPasswordField passwordField;
+	
+	/** Máscara de texto para o telefone, resposável para que o telefone fique no formato (XX)XXXXX-XXXX*/
 	private MaskFormatter ftmTelefone;
+	/** Máscara de texto para o CPF, responsável para que o CPF fique no formato XXX.XXX.XXX-XX*/
 	private MaskFormatter ftmCpf;
+	/** Máscara de texto para o CEP, responsável para que o CEP fique no formato XXXXX-XXX*/
 	private MaskFormatter ftmCep;
+	
+	/** Painel 1 da janela*/
+	private JPanel painel;
+	/** Painel 2 da janela*/
+	private JPanel painel2;
+	
+	/** Label do Cadastro Cliente*/
+	private JLabel lblCadastroCliente;
+	/** Label indicativo para o nome*/
+	private JLabel lblNome;
+	/** Label indicativo para o cpf*/
+	private JLabel lblCpf;
+	/** Label indicativo para o RG*/
+	private JLabel lblRg;
+	/** Label indicativo para o e-mail*/
+	private JLabel lblEmail;
+	/** Label indicativo para o telefone*/
+	private JLabel lblTelefone;
+	/** Label indicativo para a senha*/
+	private JLabel lblSenha;
+	/** Label indicativo para o endereco*/
+	private JLabel lblEndereco;
+	/** Label indicativo para o CEP*/
+	private JLabel lblCep;
+	/** Label indicativo para a renda mensal*/
+	private JLabel lblRenda;
+	
+	// O JFormattedTextField permite a utiliazação de máscaras, auxiliando a padronização do CPF, telefone e CEP
+	/** formattedTextField_cpf responsável por pegar o CPF do usuário com uma máscara*/
+	private JFormattedTextField formattedTextField_cpf;
+	/** formattedTextField_cpf responsável por pegar o telefone do usuário com uma máscara*/
+	private JFormattedTextField formattedTextField_telefone;
+	/** formattedTextField_cpf responsável por pegar o CEP do usuário com uma máscara*/
+	private JFormattedTextField formattedTextField_cep;
 
 	/**
-	 * Launch the application.
+	 * Função main, responsável por fazer a aplicação rodar.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -50,7 +101,7 @@ public class ClienteGUI extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Construtor padrão, cria a aplicação juntamente com a função initialize.
 	 * @throws ParseException 
 	 */
 	public ClienteGUI() throws ParseException {
@@ -58,7 +109,8 @@ public class ClienteGUI extends JFrame{
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * <h2>Função initialize()</h2>
+	 * Inicializa os componentes da aplicação.
 	 * @throws ParseException 
 	 */
 	private void initialize() throws ParseException {
@@ -72,103 +124,107 @@ public class ClienteGUI extends JFrame{
 		frmCadastroCliente.setBounds(100, 100, 550, 370);
 		frmCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblCadastroCliente = new JLabel("Cadastro Cliente");
+		lblCadastroCliente = new JLabel("Cadastro Cliente");
 		lblCadastroCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCadastroCliente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		frmCadastroCliente.getContentPane().add(lblCadastroCliente, BorderLayout.NORTH);
 		
-		JPanel panel = new JPanel();
-		frmCadastroCliente.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new BorderLayout(0, 0));
+		painel = new JPanel();
+		frmCadastroCliente.getContentPane().add(painel, BorderLayout.CENTER);
+		painel.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(null);
+		painel2 = new JPanel();
+		painel.add(painel2, BorderLayout.CENTER);
+		painel2.setLayout(null);
 		
-		JLabel lblNome = new JLabel("Nome:");
+		lblNome = new JLabel("Nome:");
 		lblNome.setBounds(10, 25, 46, 14);
-		panel_1.add(lblNome);
+		painel2.add(lblNome);
 		
 		textField_nome = new JTextField();
 		textField_nome.setBounds(59, 22, 465, 20);
-		panel_1.add(textField_nome);
+		painel2.add(textField_nome);
 		textField_nome.setColumns(10);
 		
-		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(10, 63, 31, 14);
-		panel_1.add(lblCpf);
+		painel2.add(lblCpf);
 		
-		JFormattedTextField formattedTextField_cpf = new JFormattedTextField(ftmCpf);
+		formattedTextField_cpf = new JFormattedTextField(ftmCpf);
 		formattedTextField_cpf.setBounds(59, 60, 225, 20);
 		ftmCpf.setValidCharacters("0123456789");
-		panel_1.add(formattedTextField_cpf);
+		painel2.add(formattedTextField_cpf);
 		
-		JLabel lblRg = new JLabel("RG:");
+		lblRg = new JLabel("RG:");
 		lblRg.setBounds(301, 63, 36, 14);
-		panel_1.add(lblRg);
+		painel2.add(lblRg);
 		
 		textField_rg = new JTextField();
 		textField_rg.setBounds(347, 60, 177, 20);
-		panel_1.add(textField_rg);
+		painel2.add(textField_rg);
 		textField_rg.setColumns(10);
 		
-		JLabel lblEmail = new JLabel("E-mail:");
+		lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(10, 101, 39, 14);
-		panel_1.add(lblEmail);
+		painel2.add(lblEmail);
 		
 		textField_email = new JTextField();
 		textField_email.setBounds(59, 98, 225, 20);
-		panel_1.add(textField_email);
+		painel2.add(textField_email);
 		textField_email.setColumns(10);
 		
-		JLabel lblTelefone = new JLabel("Telef.:");
+		lblTelefone = new JLabel("Telef.:");
 		lblTelefone.setBounds(10, 141, 46, 14);
-		panel_1.add(lblTelefone);
+		painel2.add(lblTelefone);
 		
-		JFormattedTextField formattedTextField_telefone = new JFormattedTextField(ftmTelefone);
+		formattedTextField_telefone = new JFormattedTextField(ftmTelefone);
 		formattedTextField_telefone.setBounds(59, 138, 225, 20);
 		ftmTelefone.setValidCharacters("0123456789");
-		panel_1.add(formattedTextField_telefone);
+		painel2.add(formattedTextField_telefone);
 		
-		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha = new JLabel("Senha:");
 		lblSenha.setBounds(301, 101, 46, 14);
-		panel_1.add(lblSenha);
+		painel2.add(lblSenha);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(347, 98, 177, 20);
-		panel_1.add(passwordField);
+		painel2.add(passwordField);
 		
-		JLabel lblEnd = new JLabel("End.:");
-		lblEnd.setBounds(10, 183, 46, 14);
-		panel_1.add(lblEnd);
+		lblEndereco = new JLabel("End.:");
+		lblEndereco.setBounds(10, 183, 46, 14);
+		painel2.add(lblEndereco);
 		
 		textField_endereco = new JTextField();
 		textField_endereco.setBounds(59, 180, 225, 20);
-		panel_1.add(textField_endereco);
+		painel2.add(textField_endereco);
 		textField_endereco.setColumns(10);
 		
-		JLabel lblCep = new JLabel("CEP:");
+		lblCep = new JLabel("CEP:");
 		lblCep.setBounds(301, 183, 46, 14);
-		panel_1.add(lblCep);
+		painel2.add(lblCep);
 		
-		JFormattedTextField formattedTextField_cep = new JFormattedTextField(ftmCep);
+		formattedTextField_cep = new JFormattedTextField(ftmCep);
 		formattedTextField_cep.setBounds(347, 180, 177, 20);
 		ftmCep.setValidCharacters("0123456789");
-		panel_1.add(formattedTextField_cep);
+		painel2.add(formattedTextField_cep);
 		
-		JLabel lblRenda = new JLabel("Renda:");
+		lblRenda = new JLabel("Renda:");
 		lblRenda.setBounds(301, 141, 46, 14);
-		panel_1.add(lblRenda);
+		painel2.add(lblRenda);
 		
 		textField_renda = new JTextField();
 		textField_renda.setBounds(347, 138, 177, 20);
-		panel_1.add(textField_renda);
+		painel2.add(textField_renda);
 		textField_renda.setColumns(10);
 		
 		// Botão salvar, que após verificar os campos, manda para o cliente dao
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+			/** Ação do botão salvar, responsável por pegar todos os atributos que foram passados pelo usuário
+			 * e definir utilizando as funções "setters" do modelo cliente. Também verifica se existe algum campo vazio.
+			 * Caso todos os campos estejam com informações, os dados que foram digitados são enviados para o DAO, onde 
+			 * posteriormente serão salvos no BD. Após enviar os dados, os campos são limpos.
+			 * */
 			public void actionPerformed(ActionEvent e) {
 				// Instanciando a classe Cliente do pacote modelo e criando seu objeto clientes
 		        Cliente clientes = new Cliente();
@@ -191,7 +247,7 @@ public class ClienteGUI extends JFrame{
 		        else {
 		            // Instanciando a classe ClienteDAO do pacote dao e criando seu objeto dao
 		            ClienteDAO dao = new ClienteDAO();
-		            dao.adiciona(clientes);
+		            dao.adicionar(clientes);
 		            JOptionPane.showMessageDialog(null, "Cliente "+textField_nome.getText()+" inserido com sucesso! "); // Retorna uma mensagem avisando
 		        }
 
@@ -208,28 +264,30 @@ public class ClienteGUI extends JFrame{
 			}
 		});
 		btnSalvar.setBounds(127, 241, 89, 23);
-		panel_1.add(btnSalvar);
+		painel2.add(btnSalvar);
 		
 		// Botão que permite que o usuário feche o sistema
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
+			/** Ação de quando o botão "Sair" é clicado, o sistema é fechado*/
 			public void actionPerformed(ActionEvent arg0) {
 				// Fecha o programa
 				System.exit(0);
 			}
 		});
 		btnSair.setBounds(326, 241, 89, 23);
-		panel_1.add(btnSair);
+		painel2.add(btnSair);
 		
 		// Botão para voltar para a tela inicial do sistema
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
+			/** Ação de quando o botão "Voltar" é clicado, o sistema volta para a tela inicial da aplicação*/
 			public void actionPerformed(ActionEvent e) {
 				HomeGUI.main(null);
 				frmCadastroCliente.dispose();
 			}
 		});
 		btnVoltar.setBounds(226, 241, 89, 23);
-		panel_1.add(btnVoltar);
+		painel2.add(btnVoltar);
 	}
 }

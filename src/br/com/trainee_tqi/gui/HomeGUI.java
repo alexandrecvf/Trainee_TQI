@@ -13,12 +13,27 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
+/**
+ * <h2>HomeGUI</h2><br>
+ * Página principal da aplicação, a partir dela, o usuário consegue navegar pelas outras janelas.
+ * 
+ * @author Alexandre Vilarinho
+ * */
 public class HomeGUI {
-
+	
+	/** Frame responsável pela janela*/
 	private JFrame frmPginaInicial;
+	/** Label responsável por escrever "Empréstimos S/A" na janela*/
+	private JLabel lblEmprestimosSa;
+	/** Painel onde os botões são colocados*/
+	private JPanel painel;
+	/** Botão responsável por redirecionar o usuário para a tela de cadastro*/
+	private JButton btnCadastrese;
+	/** Botão responsável por redirecionar o usuário para a tela de login*/
+	private JButton btnLogin;
 
 	/**
-	 * Launch the application.
+	 * Classe principal, responsável por rodar a página inicial, gerada automaticamento pelo WindowBuilder
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -34,14 +49,14 @@ public class HomeGUI {
 	}
 
 	/**
-	 * Create the application.
+	 * Construtor padrão
 	 */
 	public HomeGUI() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * A função initialize é responsável por inicializar o conteúdo do frame.
 	 */
 	private void initialize() {
 		frmPginaInicial = new JFrame();
@@ -49,19 +64,23 @@ public class HomeGUI {
 		frmPginaInicial.setBounds(100, 100, 510, 350);
 		frmPginaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblEmprstimosSa = new JLabel("Empr\u00E9stimos S/A");
-		lblEmprstimosSa.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblEmprstimosSa.setHorizontalAlignment(SwingConstants.CENTER);
-		frmPginaInicial.getContentPane().add(lblEmprstimosSa, BorderLayout.NORTH);
+		lblEmprestimosSa = new JLabel("Empr\u00E9stimos S/A");
+		lblEmprestimosSa.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblEmprestimosSa.setHorizontalAlignment(SwingConstants.CENTER);
+		frmPginaInicial.getContentPane().add(lblEmprestimosSa, BorderLayout.NORTH);
 		
-		JPanel panel = new JPanel();
-		frmPginaInicial.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		painel = new JPanel();
+		frmPginaInicial.getContentPane().add(painel, BorderLayout.CENTER);
+		painel.setLayout(null);
 		
-		JButton btnCadastrese = new JButton("Cadastre-se");
+		btnCadastrese = new JButton("Cadastre-se");
 		btnCadastrese.addActionListener(new ActionListener() {
+			/**
+			 * Ao clicar no botão Cadastre-se, o cliente é redirecionado para a tela de cadastro do usuário.
+			 * 
+			 * @param arg0	É a ação de clicar no botão.
+			 * */
 			public void actionPerformed(ActionEvent arg0) {
-				
 				try {
 					ClienteGUI cliente = new ClienteGUI();
 					cliente.main(null);
@@ -73,10 +92,15 @@ public class HomeGUI {
 			}
 		});
 		btnCadastrese.setBounds(131, 131, 110, 23);
-		panel.add(btnCadastrese);
+		painel.add(btnCadastrese);
 		
-		JButton btnLogin = new JButton("Login");
+		btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
+			/**
+			 * Ao clicar no botão Login, o cliente é redirecionado para a tela de login do usuário.
+			 * 
+			 * @param e	É a ação de clicar no botão.
+			 * */
 			public void actionPerformed(ActionEvent e) {
 				try {
 					LoginGUI login = new LoginGUI();
@@ -88,6 +112,6 @@ public class HomeGUI {
 			}
 		});
 		btnLogin.setBounds(265, 131, 110, 23);
-		panel.add(btnLogin);
+		painel.add(btnLogin);
 	}
 }
