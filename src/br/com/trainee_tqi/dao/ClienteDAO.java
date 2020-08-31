@@ -6,7 +6,7 @@ import java.sql.*;
 import java.sql.PreparedStatement;
 
 /**
- * <h2>Classe ClienteDAO</h2> <br>
+ * <h1>Classe ClienteDAO</h1> <br>
  * Responsável pela inserção de um cadastro do cliente no banco de dados
  * 
  * @author Alexandre Vilarinho
@@ -65,7 +65,5 @@ public class ClienteDAO {
         catch (SQLException u) { 
             throw new RuntimeException(u);
         } 
-        
-    } 
-    
+    }
 }

@@ -20,7 +20,7 @@ import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 /**
- * <h2>Classe LoginGUI</h2><br>
+ * <h1>Classe LoginGUI</h1><br>
  * Responsável por realizar o login do usuário. Utilizando as credenciais que foram passadas nessa tela e as
  * comparando com as informações salvas no banco de dados.
  * 

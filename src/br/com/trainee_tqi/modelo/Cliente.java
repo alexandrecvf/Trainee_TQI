@@ -1,7 +1,7 @@
 package br.com.trainee_tqi.modelo;
 
 /**
- * <h2>Classe Modelo Cliente</h2>
+ * <h1>Classe Modelo Cliente</h1>
  * Modelo de cliente da aplicação. Possui todos os atributos do cliente e ainda seus getters e setters.
  * 
  * @author Alexandre Vilarinho

@@ -19,7 +19,7 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-/**<h2>Classe ClienteGUI</h2><br>
+/**<h1>Classe ClienteGUI</h1><br>
  * Classe responsável por gerar a tela de cadastramento de um cliente.
  * 
  * @author Alexandre Vilarinho
@@ -109,7 +109,7 @@ public class ClienteGUI extends JFrame{
 	}
 
 	/**
-	 * <h2>Função initialize()</h2>
+	 * <h1>Função initialize()</h1>
 	 * Inicializa os componentes da aplicação.
 	 * @throws ParseException 
 	 */
@@ -121,7 +121,7 @@ public class ClienteGUI extends JFrame{
 		
 		frmCadastroCliente = new JFrame();
 		frmCadastroCliente.setTitle("Cadastro Cliente");
-		frmCadastroCliente.setBounds(100, 100, 550, 370);
+		frmCadastroCliente.setBounds(100, 100, 550, 365);
 		frmCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		lblCadastroCliente = new JLabel("Cadastro Cliente");

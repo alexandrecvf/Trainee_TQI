@@ -14,7 +14,7 @@ import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 /**
- * <h2>HomeGUI</h2><br>
+ * <h1>HomeGUI</h1><br>
  * Página principal da aplicação, a partir dela, o usuário consegue navegar pelas outras janelas.
  * 
  * @author Alexandre Vilarinho
