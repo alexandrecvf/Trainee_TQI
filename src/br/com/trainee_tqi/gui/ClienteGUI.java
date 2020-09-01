@@ -225,6 +225,7 @@ public class ClienteGUI extends JFrame{
 			 * Caso todos os campos estejam com informações, os dados que foram digitados são enviados para o DAO, onde 
 			 * posteriormente serão salvos no BD. Após enviar os dados, os campos são limpos.
 			 * */
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				// Instanciando a classe Cliente do pacote modelo e criando seu objeto clientes
 		        Cliente clientes = new Cliente();
@@ -263,7 +264,7 @@ public class ClienteGUI extends JFrame{
 		        textField_renda.setText("");
 			}
 		});
-		btnSalvar.setBounds(127, 241, 89, 23);
+		btnSalvar.setBounds(123, 241, 89, 23);
 		painel2.add(btnSalvar);
 		
 		// Botão que permite que o usuário feche o sistema
@@ -275,7 +276,7 @@ public class ClienteGUI extends JFrame{
 				System.exit(0);
 			}
 		});
-		btnSair.setBounds(326, 241, 89, 23);
+		btnSair.setBounds(321, 241, 89, 23);
 		painel2.add(btnSair);
 		
 		// Botão para voltar para a tela inicial do sistema
@@ -287,7 +288,7 @@ public class ClienteGUI extends JFrame{
 				frmCadastroCliente.dispose();
 			}
 		});
-		btnVoltar.setBounds(226, 241, 89, 23);
+		btnVoltar.setBounds(222, 241, 89, 23);
 		painel2.add(btnVoltar);
 	}
 }

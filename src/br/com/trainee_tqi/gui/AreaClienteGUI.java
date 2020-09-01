@@ -71,6 +71,8 @@ public class AreaClienteGUI {
 		btnSolicitarEmprestimo = new JButton("Solicitar Empr\u00E9stimo");
 		btnSolicitarEmprestimo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EmprestimoGUI.main(null);
+				frmreaDoCliente.dispose();
 			}
 		});
 		btnSolicitarEmprestimo.setBounds(53, 125, 200, 50);
@@ -79,6 +81,8 @@ public class AreaClienteGUI {
 		btnAcompanharPropostas = new JButton("Acompanhar Propostas");
 		btnAcompanharPropostas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				PropostaGUI.main(null);
+				frmreaDoCliente.dispose();
 			}
 		});
 		btnAcompanharPropostas.setBounds(285, 125, 200, 50);

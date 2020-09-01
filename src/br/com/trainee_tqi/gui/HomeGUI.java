@@ -10,7 +10,6 @@ import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 /**
@@ -81,14 +80,8 @@ public class HomeGUI {
 			 * @param arg0	É a ação de clicar no botão.
 			 * */
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					ClienteGUI cliente = new ClienteGUI();
-					cliente.main(null);
-					frmPginaInicial.dispose();
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				ClienteGUI.main(null);
+				frmPginaInicial.dispose();
 			}
 		});
 		btnCadastrese.setBounds(131, 131, 110, 23);
@@ -102,13 +95,8 @@ public class HomeGUI {
 			 * @param e	É a ação de clicar no botão.
 			 * */
 			public void actionPerformed(ActionEvent e) {
-				try {
-					LoginGUI login = new LoginGUI();
-					login.main(null);
-					frmPginaInicial.dispose();
-				} catch (Exception e2) {
-					// TODO: handle exception
-				}
+				LoginGUI.main(null);
+				frmPginaInicial.dispose();
 			}
 		});
 		btnLogin.setBounds(265, 131, 110, 23);

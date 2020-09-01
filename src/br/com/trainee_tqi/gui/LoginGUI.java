@@ -7,16 +7,12 @@ import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import br.com.trainee_tqi.factory.ConnectionFactory;
+import br.com.trainee_tqi.dao.ClienteDAO;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 /**
@@ -38,8 +34,6 @@ public class LoginGUI extends JFrame{
 	private JTextField txtUsuario;
 	/** campoSenha é o campo que receberá a senha do cadastro do cliente*/
 	private JPasswordField campoSenha;
-	/** Variável do tipo connection, responsável pela conexão com o banco de dados*/
-	private Connection connection;
 	/** Label que também é o título da janela*/
 	private JLabel lblLogin;
 	/** painel é onde os componentes da janela serão colocados*/
@@ -120,21 +114,22 @@ public class LoginGUI extends JFrame{
 			 * Uma janela de aviso aparece avisando que os dados informados estão incorretos.
 			 * */
 			public void actionPerformed(ActionEvent arg0) {
+				ClienteDAO cliente = new ClienteDAO();
 				String strUsuario = txtUsuario.getText().trim();
+				@SuppressWarnings("deprecation")
 				String strSenha = new String(campoSenha.getText()).trim();
 				
-				if(checarLogin(strUsuario, strSenha)){
-
-				    /*Chama a tela Área do Cliente*/
+				if(cliente.checarLogin(strUsuario, strSenha)){
 					JOptionPane.showMessageDialog(null, "Login Realizado!");
-
-
+					
+					AreaClienteGUI.main(null);
+					frmLogin.dispose();
 				}else{
 				    JOptionPane.showMessageDialog(null, "Dados incorretos!");
 				}
 			}
 		});
-		btnEntrar.setBounds(197, 207, 89, 23);
+		btnEntrar.setBounds(88, 237, 89, 23);
 		painel.add(btnEntrar);
 		
 		btnCadastrarse = new JButton("Cadastre-se");
@@ -146,8 +141,7 @@ public class LoginGUI extends JFrame{
 			 * */
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ClienteGUI cliente = new ClienteGUI();
-					cliente.main(null);
+					ClienteGUI.main(null);
 					frmLogin.dispose();
 				} catch (Exception e2) {
 					// TODO: handle exception
@@ -156,38 +150,16 @@ public class LoginGUI extends JFrame{
 		});
 		btnCadastrarse.setBounds(187, 237, 110, 23);
 		painel.add(btnCadastrarse);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			/** Ação de quando o botão "Voltar" é clicado, o sistema volta para a tela inicial*/
+			public void actionPerformed(ActionEvent arg0) {
+				HomeGUI.main(null);
+				frmLogin.dispose();
+			}
+		});
+		btnVoltar.setBounds(307, 237, 89, 23);
+		painel.add(btnVoltar);
 	}
-	/**
-	 * Função checarLogin é quem de fato faz a verificação dos dados passados pelo usuário e compara com o banco de dados.
-	 * Primeiramente é feita a conexão com o banco de dados, depois, é preparado o termo de pesquisa, utilizando o comando SELECT
-	 * do SQL. Será selecionado no BD o e-mail e a senha confiram com o passado pelo usuário. Caso encontre algo no banco de dados
-	 * que confira, a função retorna true.
-	 * 
-	 * @param email	Recebe o e-mail digitado pelo usuário
-	 * @param senha Recebe a senha digitada pelo usuário
-	 * 
-	 * @return true ou false, indicando se encontrou ou não um registro semelhante no banco de dados
-	 * */
-	public boolean checarLogin(String email, String senha){
-		connection = new ConnectionFactory().getConnection(); 
-	    java.sql.PreparedStatement stmt = null;
-	    ResultSet rs = null;
-	    boolean check = false;
-
-	    if(!email.isEmpty() && !senha.isEmpty()) {
-	        try {
-	            stmt = connection.prepareStatement("SELECT * FROM cliente WHERE email = ? and senha = ?");
-	            stmt.setString(1, email);
-	            stmt.setString(2, senha);
-	            rs = stmt.executeQuery();
-
-	            if (rs.next()){
-	              check = true;
-	            }
-
-	        } catch (SQLException ex) {
-	        }
-	    }
-		return check;
-}
 }

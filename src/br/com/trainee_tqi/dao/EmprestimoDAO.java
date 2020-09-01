@@ -33,7 +33,8 @@ public class EmprestimoDAO {
     
     /**
      * Função adicionar, responsável por pegar os valores inseridos pelo usuário
-     * e inserir no banco de dados, por meio do comando INSERT INTO de SQL 
+     * e inserir no banco de dados, por meio do comando INSERT INTO de SQL
+     * @param emprestimo Objeto do tipo emprestimo
      * */
     public void adicionar(Emprestimo emprestimo){ 
         String sql = "INSERT INTO emprestimo(id_cliente,quantia_solicitada,prazo) VALUES(?,?,?)";

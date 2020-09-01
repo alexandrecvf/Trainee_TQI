@@ -1,35 +1,54 @@
 package br.com.trainee_tqi.gui;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.xml.bind.ParseConversionEvent;
-
-import br.com.trainee_tqi.dao.ClienteDAO;
 import br.com.trainee_tqi.dao.EmprestimoDAO;
-import br.com.trainee_tqi.modelo.Cliente;
 import br.com.trainee_tqi.modelo.Emprestimo;
-
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**<h1>Classe EmprestimoGUI</h1><br>
+ * Classe responsável por gerar a tela de solicitação de empréstimo.
+ * 
+ * @author Alexandre Vilarinho
+ * */
 public class EmprestimoGUI {
-
+	
+	/** Frame da tela Solicitar Empréstimo*/
 	private JFrame frmSolicitarEmprstimo;
+	/** Campo de texto relativo ao identificador do cliente*/
 	private JTextField txtIdCliente;
+	/** Campo de texto relativo à quantia de dinheiro que será solicitada*/
 	private JTextField txtQuantia;
+	/** Campo de texto relativo ao prazo máximo para pagamento do empréstimo*/
 	private JTextField txtPrazo;
+	/** Label do Solicitar Empréstimo*/
+	private JLabel lblSolicitarEmprstimo;
+	/** Painel da janela*/
+	private JPanel painel;
+	/** Label indicativo para o id do cliente*/
+	private JLabel lblIdDoCliente;
+	/** Label indicativo para a quantia a ser solicitada*/
+	private JLabel lblQuantia;
+	/** Label indicativo para o prazo máximo de pagamento*/
+	private JLabel lblPrazoMximoem;
+	/** Botão para solicitar o empréstimo*/
+	private JButton btnSolicitar;
+	/** Botão para sair da aplicaçãp*/
+	private JButton btnSair;
+	/** Botão para voltar para a área do cliente*/
+	private JButton btnVoltar;
 
 	/**
-	 * Launch the application.
+	 * Função main, responsável por fazer a aplicação rodar.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,7 +64,7 @@ public class EmprestimoGUI {
 	}
 
 	/**
-	 * Create the application.
+	 * Construtor padrão, cria a aplicação juntamente com a função initialize. 
 	 */
 	public EmprestimoGUI() {
 		initialize();
@@ -60,16 +79,16 @@ public class EmprestimoGUI {
 		frmSolicitarEmprstimo.setBounds(100, 100, 550, 365);
 		frmSolicitarEmprstimo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblSolicitarEmprstimo = new JLabel("Solicitar Empr\u00E9stimo");
+		lblSolicitarEmprstimo = new JLabel("Solicitar Empr\u00E9stimo");
 		lblSolicitarEmprstimo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSolicitarEmprstimo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frmSolicitarEmprstimo.getContentPane().add(lblSolicitarEmprstimo, BorderLayout.NORTH);
 		
-		JPanel painel = new JPanel();
+		painel = new JPanel();
 		frmSolicitarEmprstimo.getContentPane().add(painel, BorderLayout.CENTER);
 		painel.setLayout(null);
 		
-		JLabel lblIdDoCliente = new JLabel("ID do cliente:");
+		lblIdDoCliente = new JLabel("ID do cliente:");
 		lblIdDoCliente.setBounds(176, 56, 73, 14);
 		painel.add(lblIdDoCliente);
 		
@@ -78,7 +97,7 @@ public class EmprestimoGUI {
 		painel.add(txtIdCliente);
 		txtIdCliente.setColumns(10);
 		
-		JLabel lblQuantia = new JLabel("Quantia:");
+		lblQuantia = new JLabel("Quantia:");
 		lblQuantia.setBounds(200, 98, 49, 14);
 		painel.add(lblQuantia);
 		
@@ -87,7 +106,7 @@ public class EmprestimoGUI {
 		painel.add(txtQuantia);
 		txtQuantia.setColumns(10);
 		
-		JLabel lblPrazoMximoem = new JLabel("Prazo m\u00E1ximo (em meses):");
+		lblPrazoMximoem = new JLabel("Prazo m\u00E1ximo (em meses):");
 		lblPrazoMximoem.setBounds(91, 136, 158, 14);
 		painel.add(lblPrazoMximoem);
 		
@@ -96,7 +115,7 @@ public class EmprestimoGUI {
 		painel.add(txtPrazo);
 		txtPrazo.setColumns(10);
 		
-		JButton btnSolicitar = new JButton("Solicitar");
+		btnSolicitar = new JButton("Solicitar");
 		btnSolicitar.addActionListener(new ActionListener() {
 			/** Ação do botão solicitar, responsável por pegar todos os atributos que foram passados pelo usuário
 			 * e definir utilizando as funções "setters" do modelo emprestimo. Também verifica se existe algum campo vazio.
@@ -130,7 +149,7 @@ public class EmprestimoGUI {
 		btnSolicitar.setBounds(222, 224, 89, 23);
 		painel.add(btnSolicitar);
 		
-		JButton btnSair = new JButton("Sair");
+		btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			/** Ação de quando o botão "Sair" é clicado, o sistema é fechado*/
 			public void actionPerformed(ActionEvent e) {
@@ -141,7 +160,7 @@ public class EmprestimoGUI {
 		btnSair.setBounds(123, 224, 89, 23);
 		painel.add(btnSair);
 		
-		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			/** Ação de quando o botão "Voltar" é clicado, o sistema volta para a tela área do cliente*/
 			public void actionPerformed(ActionEvent e) {

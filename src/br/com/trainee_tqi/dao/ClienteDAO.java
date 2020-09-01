@@ -3,7 +3,6 @@ package br.com.trainee_tqi.dao;
 import br.com.trainee_tqi.factory.ConnectionFactory;
 import br.com.trainee_tqi.modelo.Cliente;
 import java.sql.*;
-import java.sql.PreparedStatement;
 
 /**
  * <h1>Classe ClienteDAO</h1> <br>
@@ -34,6 +33,9 @@ public class ClienteDAO {
     String cep;
     /** Float renda_mensal responsável por guardar a renda mensal do cliente*/
     float renda_mensal;
+    /** Comando SQL que vai inserir no banco de dados um novo cliente*/
+    String sql;
+    PreparedStatement stmt;
     
     /**
      * Construtor para conectar ao BD, utilizando a classe ConnectionFactory
@@ -46,10 +48,10 @@ public class ClienteDAO {
      * Função adicionar, responsável por pegar os valores inseridos pelo usuário
      * e inserir no banco de dados, por meio do comando INSERT INTO de SQL 
      * */
-    public void adicionar(Cliente cliente){ 
-        String sql = "INSERT INTO cliente(nome,cpf,rg,telefone,email,senha,endereco,cep,renda_mensal) VALUES(?,?,?,?,?,?,?,?,?)";
+    public void adicionar(Cliente cliente){
+        sql = "INSERT INTO cliente(nome,cpf,rg,telefone,email,senha,endereco,cep,renda_mensal) VALUES(?,?,?,?,?,?,?,?,?)";
         try { 
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getCpf());
             stmt.setString(3, cliente.getRg());
@@ -65,5 +67,46 @@ public class ClienteDAO {
         catch (SQLException u) { 
             throw new RuntimeException(u);
         } 
+    }
+    
+    /**
+	 * Função checarLogin é quem de fato faz a verificação dos dados passados pelo usuário e compara com o banco de dados.
+	 * Primeiramente é feita a conexão com o banco de dados, depois, é preparado o termo de pesquisa, utilizando o comando SELECT
+	 * do SQL. Será selecionado no BD o e-mail e a senha confiram com o passado pelo usuário. Caso encontre algo no banco de dados
+	 * que confira, a função retorna true.
+	 * 
+	 * @param email	Recebe o e-mail digitado pelo usuário
+	 * @param senha Recebe a senha digitada pelo usuário
+	 * 
+	 * @return true ou false, indicando se encontrou ou não um registro semelhante no banco de dados
+	 * */
+    public boolean checarLogin(String email, String senha){
+	    sql = "SELECT * FROM cliente WHERE email = ? and senha = ?";
+	    stmt = null;
+	    ResultSet rs = null;
+	    boolean check = false;
+
+	    if(!email.isEmpty() && !senha.isEmpty()) {
+	        try {
+	            stmt = connection.prepareStatement(sql);
+	            stmt.setString(1, email);
+	            stmt.setString(2, senha);
+	            rs = stmt.executeQuery();
+
+	            if (rs.next()){
+	              check = true;
+	            }
+
+	        } catch (SQLException ex) {
+	        	throw new RuntimeException(ex);
+	        }
+	    }
+	    try {
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
     }
 }
