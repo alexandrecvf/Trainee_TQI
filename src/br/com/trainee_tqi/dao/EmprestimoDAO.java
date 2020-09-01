@@ -23,6 +23,10 @@ public class EmprestimoDAO {
     float quantia_solicitada;
     /** Prazo máximo (em meses) para o pagamento do empréstimo*/
     int prazo;
+    /** Comando SQL que vai inserir o pedido de empréstimo no BD*/
+    String sql;
+    /** Sentença que ajuda a inserção de dados no BD*/
+    PreparedStatement stmt;
 	
 	/**
      * Construtor para conectar ao BD, utilizando a classe ConnectionFactory
@@ -37,9 +41,9 @@ public class EmprestimoDAO {
      * @param emprestimo Objeto do tipo emprestimo
      * */
     public void adicionar(Emprestimo emprestimo){ 
-        String sql = "INSERT INTO emprestimo(id_cliente,quantia_solicitada,prazo) VALUES(?,?,?)";
+        sql = "INSERT INTO emprestimo(id_cliente,quantia_solicitada,prazo) VALUES(?,?,?)";
         try { 
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setFloat(1, emprestimo.getId_cliente());
             stmt.setFloat(2, emprestimo.getQuantia_solicitada());
             stmt.setInt(3, emprestimo.getPrazo());

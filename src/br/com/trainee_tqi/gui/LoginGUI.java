@@ -24,9 +24,7 @@ import java.awt.event.ActionEvent;
  * */
 public class LoginGUI extends JFrame{
 	
-	/**
-	 * 
-	 */
+	/** Serial Version*/
 	private static final long serialVersionUID = 1L;
 	/** Jframe responsável pela janela da tela de login*/
 	private JFrame frmLogin;
@@ -49,6 +47,7 @@ public class LoginGUI extends JFrame{
 
 	/**
 	 * Função main, responsável por rodar a aplicação
+	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

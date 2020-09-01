@@ -21,7 +21,6 @@ import java.awt.event.ActionEvent;
  * @author Alexandre Vilarinho
  * */
 public class EmprestimoGUI {
-	
 	/** Frame da tela Solicitar Empréstimo*/
 	private JFrame frmSolicitarEmprstimo;
 	/** Campo de texto relativo ao identificador do cliente*/
@@ -49,6 +48,7 @@ public class EmprestimoGUI {
 
 	/**
 	 * Função main, responsável por fazer a aplicação rodar.
+	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -71,7 +71,8 @@ public class EmprestimoGUI {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * <h1>Função initialize()</h1>
+	 * Inicializa os componentes da aplicação.
 	 */
 	private void initialize() {
 		frmSolicitarEmprstimo = new JFrame();

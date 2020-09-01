@@ -19,15 +19,20 @@ import java.awt.event.ActionEvent;
  * @author Alexandre Vilarinho
  * */
 public class AreaClienteGUI {
-
+	/** Frame da tela da Área do Cliente*/
 	private JFrame frmreaDoCliente;
+	/** Label da Área do Cliente*/
 	private JLabel lblreaDoCliente;
+	/** Painel da janela*/
 	private JPanel panel;
+	/** Botão que redireciona o usuário para a tela de solicitar empréstimos*/
 	private JButton btnSolicitarEmprestimo;
+	/** Botão que redireciona o usuário para a tela de acompanhar propostas*/
 	private JButton btnAcompanharPropostas;
 
 	/**
 	 * Função main, responsável por rodar a aplicação.
+	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

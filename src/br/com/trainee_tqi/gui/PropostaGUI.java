@@ -1,29 +1,59 @@
 package br.com.trainee_tqi.gui;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PropostaGUI {
+/**<h1>Classe PropostaGUI</h1><br>
+ * Classe responsável por gerar a tela de propostas que o usuário recebeu.
+ * 
+ * @author Alexandre Vilarinho
+ * */
 
+public class PropostaGUI {
+	/** Frame da tela de Propostas*/
 	private JFrame frmConsultarPropostas;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	
+	/** Campo de texto relativo ao valor final da proposta*/
+	private JTextField txtValorFinal;
+	/** Campo de texto relativo a quantidade de parcelas*/
+	private JTextField txtQtdParcelas;
+	/** Campo de texto relativo ao valor de cada parcela*/
+	private JTextField txtValorParcelas;
+	/** Campo de texto relativo ao status da proposta*/
+	private JTextField txtStatus;
+	
+	/** Painel da janela*/
+	private JPanel painel;
+	/** Label das Propostas*/
+	private JLabel lblPropostas;
+	/** Label indicativo para o valor final*/
+	private JLabel lblValorFinal;
+	/** Label indicativo para a quantidade de parcelas*/
+	private JLabel lblQuantidadeDeParcelas;
+	/** Label indicativo para o valor das parcelas*/
+	private JLabel lblValorParcelas;
+	/** Label indicativo para o status da proposta*/
+	private JLabel lblStatus;
+	
+	/** btnAceitar é o botão responsável que leva o usuário a aceitar a proposta*/
+	private JButton btnAceitar;
+	/** btnRecusar é o botão responsável que leva o usuário a recusar a proposta*/
+	private JButton btnRecusar;
+	/** Botão que permite que o usuário volte para a área do cliente*/
+	private JButton btnVoltar;
 
 	/**
-	 * Launch the application.
+	 * Roda a aplicação
+	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,14 +69,15 @@ public class PropostaGUI {
 	}
 
 	/**
-	 * Create the application.
+	 * Construtor padrão, cria a aplicação juntamente com a função initialize.
 	 */
 	public PropostaGUI() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * <h1>Função initialize()</h1>
+	 * Inicializa os componentes da aplicação.
 	 */
 	private void initialize() {
 		frmConsultarPropostas = new JFrame();
@@ -54,68 +85,80 @@ public class PropostaGUI {
 		frmConsultarPropostas.setBounds(100, 100, 550, 365);
 		frmConsultarPropostas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblPropostas = new JLabel("Propostas");
+		lblPropostas = new JLabel("Propostas");
 		lblPropostas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPropostas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frmConsultarPropostas.getContentPane().add(lblPropostas, BorderLayout.NORTH);
 		
-		JPanel painel = new JPanel();
+		painel = new JPanel();
 		frmConsultarPropostas.getContentPane().add(painel, BorderLayout.CENTER);
 		painel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(245, 43, 125, 20);
-		painel.add(textField);
-		textField.setColumns(10);
+		txtValorFinal = new JTextField();
+		txtValorFinal.setBounds(245, 43, 125, 20);
+		txtValorFinal.setEditable(false);
+		txtValorFinal.setText("4500,00");
+		painel.add(txtValorFinal);
+		txtValorFinal.setColumns(10);
 		
-		JLabel lblValorFinal = new JLabel("Valor Final:");
+		lblValorFinal = new JLabel("Valor Final:");
 		lblValorFinal.setBounds(175, 46, 73, 14);
 		painel.add(lblValorFinal);
 		
-		JLabel lblQuantidadeDeParcelas = new JLabel("Quantidade de Parcelas:");
+		lblQuantidadeDeParcelas = new JLabel("Quantidade de Parcelas:");
 		lblQuantidadeDeParcelas.setBounds(96, 87, 153, 14);
 		painel.add(lblQuantidadeDeParcelas);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(245, 84, 125, 20);
-		painel.add(textField_1);
-		textField_1.setColumns(10);
+		txtQtdParcelas = new JTextField();
+		txtQtdParcelas.setBounds(245, 84, 125, 20);
+		txtQtdParcelas.setEditable(false);
+		txtQtdParcelas.setText("3");
+		painel.add(txtQtdParcelas);
+		txtQtdParcelas.setColumns(10);
 		
-		JLabel lblValorParcelas = new JLabel("Valor das Parcelas:");
+		lblValorParcelas = new JLabel("Valor das Parcelas:");
 		lblValorParcelas.setBounds(124, 128, 124, 14);
 		painel.add(lblValorParcelas);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(245, 125, 125, 20);
-		painel.add(textField_2);
-		textField_2.setColumns(10);
+		txtValorParcelas = new JTextField();
+		txtValorParcelas.setBounds(245, 125, 125, 20);
+		txtValorParcelas.setEditable(false);
+		txtValorParcelas.setText("1500,00");
+		painel.add(txtValorParcelas);
+		txtValorParcelas.setColumns(10);
 		
-		JLabel lblStatus = new JLabel("Status:");
+		lblStatus = new JLabel("Status:");
 		lblStatus.setBounds(193, 170, 46, 14);
 		painel.add(lblStatus);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(245, 167, 125, 20);
-		painel.add(textField_3);
-		textField_3.setColumns(10);
+		txtStatus = new JTextField();
+		txtStatus.setBounds(245, 167, 125, 20);
+		txtStatus.setEditable(false);
+		txtStatus.setText("Aguardando");
+		painel.add(txtStatus);
+		txtStatus.setColumns(10);
 		
-		JButton btnAceitar = new JButton("Aceitar");
+		btnAceitar = new JButton("Aceitar");
 		btnAceitar.addActionListener(new ActionListener() {
+			/** Ao clicar no botão Aceitar, o status da proposta será alterado no banco de dados
+			 * e a mesma não voltará a aparecer para o cliente.*/
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnAceitar.setBounds(123, 245, 89, 23);
 		painel.add(btnAceitar);
 		
-		JButton btnRecusar = new JButton("Recusar");
+		btnRecusar = new JButton("Recusar");
 		btnRecusar.addActionListener(new ActionListener() {
+			/** Ao clicar no botão Recusar, o status da proposta será alterado no banco de dados
+			 * e a mesma não voltará a aparecer para o cliente.*/
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnRecusar.setBounds(222, 245, 89, 23);
 		painel.add(btnRecusar);
 		
-		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			/** Ação de quando o botão "Voltar" é clicado, o sistema volta para a tela área do cliente*/
 			public void actionPerformed(ActionEvent arg0) {

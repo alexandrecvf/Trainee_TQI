@@ -19,7 +19,6 @@ import java.awt.event.ActionEvent;
  * @author Alexandre Vilarinho
  * */
 public class HomeGUI {
-	
 	/** Frame responsável pela janela*/
 	private JFrame frmPginaInicial;
 	/** Label responsável por escrever "Empréstimos S/A" na janela*/
@@ -33,6 +32,7 @@ public class HomeGUI {
 
 	/**
 	 * Classe principal, responsável por rodar a página inicial, gerada automaticamento pelo WindowBuilder
+	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

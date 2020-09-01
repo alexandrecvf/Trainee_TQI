@@ -83,9 +83,17 @@ public class ClienteGUI extends JFrame{
 	private JFormattedTextField formattedTextField_telefone;
 	/** formattedTextField_cpf responsável por pegar o CEP do usuário com uma máscara*/
 	private JFormattedTextField formattedTextField_cep;
+	
+	/** Botão responsável por salvar o cadastro do usuário*/
+	private JButton btnSalvar;
+	/** botão que permite que o usuário saia da aplicação*/
+	private JButton btnSair;
+	/** Botão que permite que o usuário volte para a tela inicial da aplicação*/
+	private JButton btnVoltar;
 
 	/**
 	 * Função main, responsável por fazer a aplicação rodar.
+	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -218,7 +226,7 @@ public class ClienteGUI extends JFrame{
 		textField_renda.setColumns(10);
 		
 		// Botão salvar, que após verificar os campos, manda para o cliente dao
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			/** Ação do botão salvar, responsável por pegar todos os atributos que foram passados pelo usuário
 			 * e definir utilizando as funções "setters" do modelo cliente. Também verifica se existe algum campo vazio.
@@ -268,7 +276,7 @@ public class ClienteGUI extends JFrame{
 		painel2.add(btnSalvar);
 		
 		// Botão que permite que o usuário feche o sistema
-		JButton btnSair = new JButton("Sair");
+		btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			/** Ação de quando o botão "Sair" é clicado, o sistema é fechado*/
 			public void actionPerformed(ActionEvent arg0) {
@@ -280,7 +288,7 @@ public class ClienteGUI extends JFrame{
 		painel2.add(btnSair);
 		
 		// Botão para voltar para a tela inicial do sistema
-		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			/** Ação de quando o botão "Voltar" é clicado, o sistema volta para a tela inicial da aplicação*/
 			public void actionPerformed(ActionEvent e) {

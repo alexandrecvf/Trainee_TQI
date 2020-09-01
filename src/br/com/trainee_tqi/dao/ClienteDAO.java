@@ -35,7 +35,10 @@ public class ClienteDAO {
     float renda_mensal;
     /** Comando SQL que vai inserir no banco de dados um novo cliente*/
     String sql;
+    /** Sentença que ajuda a inserção de dados no BD*/
     PreparedStatement stmt;
+    /** Variável do tipo boolean responsável por salvar se encontrou ou não algum registro no BD.*/
+    boolean check;
     
     /**
      * Construtor para conectar ao BD, utilizando a classe ConnectionFactory
@@ -46,7 +49,9 @@ public class ClienteDAO {
     
     /**
      * Função adicionar, responsável por pegar os valores inseridos pelo usuário
-     * e inserir no banco de dados, por meio do comando INSERT INTO de SQL 
+     * e inserir no banco de dados, por meio do comando INSERT INTO de SQL
+     * 
+     * @param cliente	Objeto do tipo Cliente
      * */
     public void adicionar(Cliente cliente){
         sql = "INSERT INTO cliente(nome,cpf,rg,telefone,email,senha,endereco,cep,renda_mensal) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -84,7 +89,7 @@ public class ClienteDAO {
 	    sql = "SELECT * FROM cliente WHERE email = ? and senha = ?";
 	    stmt = null;
 	    ResultSet rs = null;
-	    boolean check = false;
+	    check = false;
 
 	    if(!email.isEmpty() && !senha.isEmpty()) {
 	        try {

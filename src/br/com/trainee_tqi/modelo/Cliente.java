@@ -29,7 +29,9 @@ public class Cliente {
     /** Renda mensal do cliente*/
     float renda_mensal;
     
-    /** Recebe o id*/
+    /** Recebe o id
+     * @return id id do cliente
+     * */
 	public Long getId() {
 		return id;
 	}
@@ -40,7 +42,9 @@ public class Cliente {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/** Recebe o nome do cliente.*/
+	/** Recebe o nome do cliente.
+	 * @return nome	Nome do cliente
+	 * */
 	public String getNome() {
 		return nome;
 	}
@@ -51,19 +55,22 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	/** Recebe o CPF do cliente*/
+	/** Recebe o CPF do cliente
+	 * @return cpf CPF do cliente
+	 * */
 	public String getCpf() {
 		return cpf;
 	}
 	/**Define o CPF do cliente
 	 * 
 	 * @param cpf	CPF do cliente.
-	 * 
 	 * */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	/** Recebe o RG do cliente*/
+	/** Recebe o RG do cliente
+	 * @return rg RG do cliente
+	 * */
 	public String getRg() {
 		return rg;
 	}
@@ -74,7 +81,9 @@ public class Cliente {
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
-	/** Recebe o telefone do cliente.*/
+	/** Recebe o telefone do cliente.
+	 * @return telefone Telefone do cliente.
+	 * */
 	public String getTelefone() {
 		return telefone;
 	}
@@ -85,7 +94,9 @@ public class Cliente {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	/** Recebe o e-mail do cliente.*/
+	/** Recebe o e-mail do cliente.
+	 * @return email E-mail do cliente.
+	 * */
 	public String getEmail() {
 		return email;
 	}
@@ -97,7 +108,9 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	/** Recebe o endereço do cliente*/
+	/** Recebe o endereço do cliente
+	 * @return endereco Endereço do cliente.
+	 * */
 	public String getEndereco() {
 		return endereco;
 	}
@@ -108,7 +121,9 @@ public class Cliente {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	/** Recebe o CEP do cliente.*/
+	/** Recebe o CEP do cliente.
+	 * @return cep CEP do cliente.
+	 * */
 	public String getCep() {
 		return cep;
 	}
@@ -119,7 +134,9 @@ public class Cliente {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	/** Recebe a renda mensal do cliente.*/
+	/** Recebe a renda mensal do cliente.
+	 * @return renda_mensal Renda mensal do cliente.
+	 * */
 	public float getRenda_mensal() {
 		return renda_mensal;
 	}
@@ -130,7 +147,9 @@ public class Cliente {
 	public void setRenda_mensal(float renda_mensal) {
 		this.renda_mensal = renda_mensal;
 	}
-	/** Recebe a senha do cliente*/
+	/** Recebe a senha do cliente
+	 * @return senha Senha do cliente.
+	 * */
 	public String getSenha() {
 		return senha;
 	}
